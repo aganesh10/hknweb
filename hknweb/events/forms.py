@@ -32,6 +32,15 @@ class EventUpdateForm(forms.ModelForm):
             'slug': forms.TextInput(attrs={'placeholder': 'e.g. <semester>-<name>'}),
         }
 
+class EventUpdateForm(forms.ModelForm):
+    start_time = forms.DateTimeField(input_formats=('%m/%d/%Y %I:%M %p',))
+    end_time = forms.DateTimeField(input_formats=('%m/%d/%Y %I:%M %p',))
+
+    class Meta:
+        model = Event
+        fields = ['name', 'slug', 'start_time', 'end_time', 'location', 'event_type',
+                  'description', 'rsvp_limit']
+
         labels = {
             'slug': 'URL-friendly name',
             'rsvp_limit': 'RSVP limit',
